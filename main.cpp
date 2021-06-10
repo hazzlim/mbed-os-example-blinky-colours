@@ -13,16 +13,15 @@
 int main()
 {
     // Initialise the digital pins 1-4 as outputs 
-    DigitalOut red(LED_RED);
-    DigitalOut green(LED_GREEN);
-    DigitalOut blue(LED_BLUE);
-    DigitalOut led_arr[3] = {DigitalOut(LED_RED), DigitalOut(LED_BLUE),
-                             DigitalOut(LED_GREEN)};
+    DigitalOut led_arr[3] = { DigitalOut(LED_RED, 1),
+                              DigitalOut(LED_BLUE, 1),
+                              DigitalOut(LED_GREEN, 1) };
 
     while (true) {
         for(auto & led : led_arr) {
             led = !led;
             ThisThread::sleep_for(BLINKING_RATE);
+            led = !led;
         }
     }
 }
